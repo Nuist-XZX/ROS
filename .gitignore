@@ -1,0 +1,9 @@
+# 忽略所有 build 和 devel 文件夹及其内容
+build/
+devel/
+
+# 如果你想更明确地匹配任意层级的 build/devel，也可以写成：
+# **/build/
+# **/devel/
+
+# .vscode/

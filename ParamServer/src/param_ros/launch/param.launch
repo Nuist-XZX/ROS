@@ -1,0 +1,9 @@
+<launch>
+    <!-- <node pkg="param_ros" type="setparam" name="set_param_cpp" output="screen" /> -->
+    <!-- <node pkg="param_ros" type="getparam" name="get_param_cpp" output="screen" /> -->
+    <!-- <node pkg="param_ros" type="delparam" name="del_param_cpp" output="screen" /> -->
+    <!-- <node pkg="param_ros" type="turtle" name="turtle" output="screen" /> -->
+    <!-- <node pkg="param_ros" type="turtle_sub" name="turtle_sub" output="screen" /> -->
+    <!-- <node pkg="param_ros" type="turtle_client" name="turtlesim_client" args="1.0 1.0 1.57 turtle2" output="screen" /> -->
+    <node pkg="param_ros" type="turtle_param" name="turtle_param" output="screen" />
+</launch>

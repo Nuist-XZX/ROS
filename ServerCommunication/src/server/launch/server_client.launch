@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="server" type="request" name="request" args="10 222" output="screen"/>
+    <node pkg="server" type="response" name="response" output="screen"/>
+
+</launch>
