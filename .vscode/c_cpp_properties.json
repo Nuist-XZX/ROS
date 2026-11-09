@@ -5,11 +5,15 @@
       "includePath": [
           "/opt/ros/noetic/include",          // ROS 系统头文件
           "${workspaceFolder}/TopicCommunication/src/**",
-          "${workspaceFolder}/TopicCommunication/devel/include",   // 你工作空间中自定义 msg 生成的头文件
+          "${workspaceFolder}/TopicCommunication/devel/include",   // 你工作空间中自定义 msg/srv 生成的头文件
           "${workspaceFolder}/ServerCommunication/src/**",
           "${workspaceFolder}/ServerCommunication/devel/include",
           "${workspaceFolder}/ParamServer/src/**",
-          "${workspaceFolder}/ParamServer/devel/include"
+          // "${workspaceFolder}/ParamServer/devel/include",
+          "${workspaceFolder}/WorkSpace/src/**",
+          // "${workspaceFolder}/WorkSpace/devel/include",
+          "${workspaceFolder}/WorkSpace/src/demo1/include/**",  // 自定义头文件的路径
+          "${workspaceFolder}/WorkSpace/src/demo2/include/**"
       ],
       "compilerPath": "/usr/bin/gcc",
       "cStandard": "${default}",
