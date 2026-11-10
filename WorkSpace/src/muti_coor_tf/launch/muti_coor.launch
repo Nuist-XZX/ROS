@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="muti_coor_tf" type="static_transform_publisher" name="son1" args="0.2 0.8 0.3 0 0 0 /world /son1" output="screen" />
+    <node pkg="muti_coor_tf" type="static_transform_publisher" name="son2" args="0.5 0 0 0 0 0 /world /son2" output="screen" />
+</launch>

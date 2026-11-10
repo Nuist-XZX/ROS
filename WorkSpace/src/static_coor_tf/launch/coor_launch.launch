@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="static_coor_tf" type="coor_pub" name="tf_pub" output="screen"/>
+    <node pkg="static_coor_tf" type="coor_sub" name="tf_sub" output="screen"/>
+</launch>

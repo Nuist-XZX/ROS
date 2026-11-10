@@ -14,7 +14,7 @@
 #include "tf2_ros/transform_listener.h"
 #include "tf2_ros/buffer.h"
 #include "geometry_msgs/PointStamped.h"
-#include "tf2_geometry_msgs/tf2_geometry_msgs.h" //注意: 调用 transform 必须包含该头文件
+#include "tf2_geometry_msgs/tf2_geometry_msgs.h" //注意: buffer 调用 transform 必须包含该头文件
 
 int main(int argc, char *argv[])
 {
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     ros::init(argc,argv,"tf_sub");
     ros::NodeHandle nh;
     // 3.创建 TF 订阅节点
-    tf2_ros::Buffer buffer;
+    tf2_ros::Buffer buffer; // 缓存
     tf2_ros::TransformListener listener(buffer);
 
     ros::Rate r(1);
@@ -33,20 +33,22 @@ int main(int argc, char *argv[])
         geometry_msgs::PointStamped point_laser;
         point_laser.header.frame_id = "laser";
         point_laser.header.stamp = ros::Time::now();
-        point_laser.point.x = 1;
-        point_laser.point.y = 2;
-        point_laser.point.z = 7.3;
+        // 坐标点在子坐标系中的位置信息
+        point_laser.point.x = 2.0;
+        point_laser.point.y = 3.0;
+        point_laser.point.z = 5.0;
     // 5.转换坐标点(相对于父级坐标系)
         //新建一个坐标点，用于接收转换结果  
         //--------------使用 try 语句或休眠，否则可能由于缓存接收延迟而导致坐标转换失败------------------------
         try
         {
             geometry_msgs::PointStamped point_base;
-            point_base = buffer.transform(point_laser,"base_link");
-            ROS_INFO("转换后的数据:(%.2f,%.2f,%.2f),参考的坐标系是:",point_base.point.x,point_base.point.y,point_base.point.z,point_base.header.frame_id.c_str());
+            // 调用的是buffer的转换函数transform，因为listener的结果是存在了buffer中，将坐标点从子级坐标系转换到父级坐标系
+            point_base = buffer.transform(point_laser,"base_link"); // 参数1：被转换的坐标点信息； 参数2：目标坐标系；
+            ROS_INFO("转换后的数据:(%.2f,%.2f,%.2f),参考的坐标系是:%s",point_base.point.x,point_base.point.y,point_base.point.z,point_base.header.frame_id.c_str());
 
         }
-        catch(const std::exception& e)
+        catch(const std::exception& e) // 订阅数据是一个好耗时操作，再调用transform函数时，可能会因为缓存接收延迟而导致坐标转换失败，所以需要使用try语句捕获异常；也可以使用休眠的方式（ros::Duration(2).sleep()放在ros::Rate r(1)之前），保证缓存中有数据再进行转换
         {
             // std::cerr << e.what() << '\n';
             ROS_INFO("程序异常.....");
