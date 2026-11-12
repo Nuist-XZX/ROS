@@ -1,0 +1,17 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"Driving_wheel_01" [label="Driving_wheel_01"];
+"Driving_wheel_02" [label="Driving_wheel_02"];
+"Universal_wheel_01" [label="Universal_wheel_01"];
+"Universal_wheel_02" [label="Universal_wheel_02"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "wheel_01" [label="xyz: 0 -0.1075 -0.0225 \nrpy: 0 -0 0"]
+"wheel_01" -> "Driving_wheel_01"
+"base_link" -> "wheel_02" [label="xyz: 0 0.1075 -0.0225 \nrpy: 0 -0 0"]
+"wheel_02" -> "Driving_wheel_02"
+"base_link" -> "wheel_03" [label="xyz: 0.0925 0 -0.0475 \nrpy: 0 -0 0"]
+"wheel_03" -> "Universal_wheel_01"
+"base_link" -> "wheel_04" [label="xyz: -0.0925 0 -0.0475 \nrpy: 0 -0 0"]
+"wheel_04" -> "Universal_wheel_02"
+}
