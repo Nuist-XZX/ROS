@@ -1,0 +1,59 @@
+<robot name="base_plate" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- footprint -->
+    <xacro:property name="footprint_radius" value="0.001" />
+
+    <link name="footprint_link">
+        <visual name="footprint">
+            <geometry>
+                <sphere radius="${footprint_radius}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <material name="yellow">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+    <!-- 底盘 -->
+    <xacro:property name="ground_length" value="0.015" />
+    <xacro:property name="base_radius" value="0.1" />
+    <xacro:property name="base_length" value="0.08" />
+    <xacro:property name="base_mass" value="0.5" />
+    <xacro:property name="base_z" value="${base_length/2 + ground_length}" />
+    <xacro:property name="PI" value="3.1415927" />
+
+    <link name="base_link">
+        <visual name="base">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${base_radius}" length="${base_length}" />
+            </geometry>
+            <material name="yellow">
+                <color rgba="0.0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${base_radius}" length="${base_length}" />
+            </geometry>
+        </collision>
+
+        <xacro:cylinder_inertial_matrix m="${base_mass}" r="${base_radius}" h="${base_length}"/>
+
+    </link>
+
+    <gazebo reference="base_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <joint name="base_foot" type="fixed">
+        <origin xyz="0.0 0.0 ${base_z}" rpy="0.0 0.0 0.0"/>
+        <parent link="footprint_link"/>
+        <child link="base_link"/>
+        <axis xyz="0.0 0.0 0.0"/>
+    </joint>
+
+
+</robot>
