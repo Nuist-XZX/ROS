@@ -1,0 +1,5 @@
+<robot name="robot1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="base.urdf.xacro" />
+    <xacro:include filename="wheel.urdf.xacro" />
+    <xacro:include filename="radar_camera.urdf.xacro" />
+</robot>
