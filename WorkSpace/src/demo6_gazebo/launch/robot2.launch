@@ -1,0 +1,17 @@
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro $(find demo6_gazebo)/urdf/xacro/robot1.urdf.gazebo.xacro" />
+
+    <!-- 启动 gazebo 仿真环境，当前环境为空环境-->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find demo6_gazebo)/worlds/box_house.world" />
+    </include>
+
+    <!-- 在 gazebo 中显示机器人模型 -->
+    <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model robot1 -param robot_description"  />
+    
+    <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find demo5_xzcro)/config/model.rviz" />
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" />
+    <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" output="screen" /> -->
+
+</launch>
