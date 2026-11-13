@@ -1,6 +1,17 @@
 <robot name="robot1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- 包含惯性矩阵文件 -->
     <xacro:include filename="inertial.xacro" />
+    <!-- 包含机器人文件 -->
     <xacro:include filename="base.urdf.gazebo.xacro" />
     <xacro:include filename="wheel.urdf.gazebo.xacro" />
     <xacro:include filename="radar_camera.urdf.gazebo.xacro" />
+
+    <!-- 包含运动控制文件，由于launch文件中指定了顶层xacro的文件路径，所以如果其他xacro在在其路径下，需要使用相对路径返回上层目录 -->
+    <xacro:include filename="../gazebo/move.urdf.xacro" />
+    <!-- 加入雷达仿真 -->
+    <xacro:include filename="../gazebo/radar.urdf.xacro" />
+    <!-- 加入相机仿真 -->
+    <xacro:include filename="../gazebo/camera.urdf.xacro" />
+    <!-- 加入深度相机仿真 -->
+    <xacro:include filename="../gazebo/deepcamera.urdf.xacro" />
 </robot>
