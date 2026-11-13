@@ -1,7 +1,7 @@
 <launch>
 
     <!-- 将 Urdf 文件的内容加载到参数服务器 -->
-    <param name="robot_description" textfile="$(find demo5_gazebo)/urdf/urdf/demo01.urdf" />
+    <param name="robot_description" textfile="$(find demo5_xacro)/urdf/urdf/demo01.urdf" />
 
     <!-- 启动 gazebo 仿真环境 -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch" />
